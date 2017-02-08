@@ -67,17 +67,17 @@
                 .attr("height", function(d){return ((d[1]/18640.7)*100)})
                 .on("mouseover", function(d) {
                     tool.transition()
-                        .duration(200)
+                        .duration(0)
                         .style("opacity", .9);
                     tool.html("$" + Math.floor(d[1]) + " billion" + "<br>" + d[0][5] + d[0][6] + "/" + d[0].substr(0,4))
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
-                    });
-                // .on("mouseout", function(d){
-                //     tool.transition()
-                //         .duration(10)
-                //         .style("opacity", 0);
-                // });
+                    })
+                .on("mouseout", function(d){
+                    tool.transition()
+                        .duration(0)
+                        .style("opacity", 0);
+                });
             svg.selectAll("text")
                 .data(dataset)
                 .enter().append("text")

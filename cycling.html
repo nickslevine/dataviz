@@ -7,6 +7,7 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+            
         }
         .title {
             font-family: Arial;
@@ -70,22 +71,22 @@
                     if (d["Doping"] == '') {
                         return "black";
                     } else {
-                        return "none";
+                        return "white";
                     }
                 })
                 .attr("stroke", "black")
                 .attr("stroke-width", .75)
                 .on("mouseover", function(d) {
                     tool.transition()
-                        .duration(200)
+                        .duration(100)
                         .style("opacity", .9);
                     tool.html(d["Name"] + " (" + d["Nationality"]+ ")<br>Time:" + d["Time"]+" (" + d["Year"] + ")<br>"+d["Doping"])
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY - 28) + "px");
-                    });
-                // .on("mouseout", function(d){
-                //     tool.transition().duration(500).style("opacity", 0);
-                // });
+                    })
+                .on("mouseout", function(d){
+                    tool.transition().duration(200).style("opacity", 0);
+                });
 
             svg.selectAll("text")
                 .data(data)
